@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422489842014DD3C006ADC90 /* safileio.c in Sources */ = {isa = PBXBuildFile; fileRef = 422489742014DC5F006ADC90 /* safileio.c */; };
+		422489852014DD3C006ADC90 /* dbfopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 422489762014DC5F006ADC90 /* dbfopen.c */; };
+		422489862014DD3C006ADC90 /* shpopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 4224897B2014DC5F006ADC90 /* shpopen.c */; };
+		422489872014DD3C006ADC90 /* RZShapeFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 422489752014DC5F006ADC90 /* RZShapeFile.m */; };
+		422489882014DD3C006ADC90 /* RZShapeFileMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422489772014DC5F006ADC90 /* RZShapeFileMapView.m */; };
+		422489892014DE1C006ADC90 /* shapefil.h in Headers */ = {isa = PBXBuildFile; fileRef = 422489792014DC5F006ADC90 /* shapefil.h */; };
+		4224898A2014DE1C006ADC90 /* RZShapeFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 422489782014DC5F006ADC90 /* RZShapeFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4224898B2014DE1C006ADC90 /* RZShapeFileMapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4224897A2014DC5F006ADC90 /* RZShapeFileMapView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		422626011FFA7C5F000DBD32 /* RZNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422626001FFA7C5E000DBD32 /* RZNavigationTitleView.m */; };
 		422626031FFA7C68000DBD32 /* RZNavigationTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 422626021FFA7C68000DBD32 /* RZNavigationTitleView.h */; };
 		42A007CF20012ADC00019CB3 /* RZExternalCpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A007C120012ADC00019CB3 /* RZExternalCpp.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -376,6 +384,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		422489742014DC5F006ADC90 /* safileio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = safileio.c; sourceTree = "<group>"; };
+		422489752014DC5F006ADC90 /* RZShapeFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZShapeFile.m; sourceTree = "<group>"; };
+		422489762014DC5F006ADC90 /* dbfopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dbfopen.c; sourceTree = "<group>"; };
+		422489772014DC5F006ADC90 /* RZShapeFileMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZShapeFileMapView.m; sourceTree = "<group>"; };
+		422489782014DC5F006ADC90 /* RZShapeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZShapeFile.h; sourceTree = "<group>"; };
+		422489792014DC5F006ADC90 /* shapefil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shapefil.h; sourceTree = "<group>"; };
+		4224897A2014DC5F006ADC90 /* RZShapeFileMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZShapeFileMapView.h; sourceTree = "<group>"; };
+		4224897B2014DC5F006ADC90 /* shpopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shpopen.c; sourceTree = "<group>"; };
 		422626001FFA7C5E000DBD32 /* RZNavigationTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZNavigationTitleView.m; sourceTree = "<group>"; };
 		422626021FFA7C68000DBD32 /* RZNavigationTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZNavigationTitleView.h; sourceTree = "<group>"; };
 		422626041FFA8046000DBD32 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
@@ -797,9 +813,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		422489732014DC5F006ADC90 /* shapefile */ = {
+			isa = PBXGroup;
+			children = (
+				422489792014DC5F006ADC90 /* shapefil.h */,
+				422489742014DC5F006ADC90 /* safileio.c */,
+				422489762014DC5F006ADC90 /* dbfopen.c */,
+				4224897B2014DC5F006ADC90 /* shpopen.c */,
+				422489782014DC5F006ADC90 /* RZShapeFile.h */,
+				422489752014DC5F006ADC90 /* RZShapeFile.m */,
+				4224897A2014DC5F006ADC90 /* RZShapeFileMapView.h */,
+				422489772014DC5F006ADC90 /* RZShapeFileMapView.m */,
+			);
+			path = shapefile;
+			sourceTree = "<group>";
+		};
 		42A007C020012ADC00019CB3 /* RZExternalCpp */ = {
 			isa = PBXGroup;
 			children = (
+				422489732014DC5F006ADC90 /* shapefile */,
 				42A007D620012B4800019CB3 /* FitSDKRelease_20 */,
 				42A007C120012ADC00019CB3 /* RZExternalCpp.h */,
 				42A007C220012ADC00019CB3 /* Info.plist */,
@@ -1486,6 +1518,7 @@
 				42A0093620012B4800019CB3 /* fit_obdii_data_mesg.hpp in Headers */,
 				42A0095220012B4800019CB3 /* fit_segment_point_mesg_listener.hpp in Headers */,
 				42A0095520012B4800019CB3 /* fit_slave_device_mesg.hpp in Headers */,
+				4224898B2014DE1C006ADC90 /* RZShapeFileMapView.h in Headers */,
 				42A008CF20012B4800019CB3 /* fit_camera_event_mesg_listener.hpp in Headers */,
 				42A008CB20012B4800019CB3 /* fit_buffered_record_mesg_listener.hpp in Headers */,
 				42A0096220012B4800019CB3 /* fit_totals_mesg_listener.hpp in Headers */,
@@ -1501,6 +1534,7 @@
 				42A008BA20012B4800019CB3 /* fit_ant_rx_mesg.hpp in Headers */,
 				42A008C220012B4800019CB3 /* fit_blood_pressure_mesg.hpp in Headers */,
 				42A0096020012B4800019CB3 /* fit_timestamp_correlation_mesg_listener.hpp in Headers */,
+				4224898A2014DE1C006ADC90 /* RZShapeFile.h in Headers */,
 				42A0093C20012B4800019CB3 /* fit_power_zone_mesg.hpp in Headers */,
 				42A008DD20012B4800019CB3 /* fit_date_time.hpp in Headers */,
 				42A0094920012B4800019CB3 /* fit_segment_file_mesg.hpp in Headers */,
@@ -1548,6 +1582,7 @@
 				42A0091420012B4800019CB3 /* fit_hrm_profile_mesg_listener.hpp in Headers */,
 				42A008F620012B4800019CB3 /* fit_exd_screen_configuration_mesg_listener.hpp in Headers */,
 				42A0090C20012B4800019CB3 /* fit_gps_metadata_mesg_listener.hpp in Headers */,
+				422489892014DE1C006ADC90 /* shapefil.h in Headers */,
 				42A008F820012B4800019CB3 /* fit_factory.hpp in Headers */,
 				42A008D220012B4800019CB3 /* fit_config.h in Headers */,
 				42A008B720012B4800019CB3 /* fit_activity_mesg_listener.hpp in Headers */,
@@ -1827,6 +1862,7 @@
 				42A0092B20012B4800019CB3 /* fit_mesg_with_event_broadcaster.cpp in Sources */,
 				42A0091F20012B4800019CB3 /* fit_mesg.cpp in Sources */,
 				42A008ED20012B4800019CB3 /* fit_encode.cpp in Sources */,
+				422489882014DD3C006ADC90 /* RZShapeFileMapView.m in Sources */,
 				42A008FB20012B4800019CB3 /* fit_field_base.cpp in Sources */,
 				42A008AD20012B4800019CB3 /* fit.cpp in Sources */,
 				42A008B220012B4800019CB3 /* fit_accumulated_field.cpp in Sources */,
@@ -1834,12 +1870,16 @@
 				42A008DA20012B4800019CB3 /* fit_crc.cpp in Sources */,
 				42A0092620012B4800019CB3 /* fit_mesg_definition.cpp in Sources */,
 				42A008DE20012B4800019CB3 /* fit_decode.cpp in Sources */,
+				422489852014DD3C006ADC90 /* dbfopen.c in Sources */,
 				42A008B420012B4800019CB3 /* fit_accumulator.cpp in Sources */,
 				42A008C420012B4800019CB3 /* fit_buffer_encode.cpp in Sources */,
 				42A008F920012B4800019CB3 /* fit_field.cpp in Sources */,
 				42A008E420012B4800019CB3 /* fit_developer_field_definition.cpp in Sources */,
+				422489862014DD3C006ADC90 /* shpopen.c in Sources */,
 				42A008C920012B4800019CB3 /* fit_buffered_record_mesg_broadcaster.cpp in Sources */,
+				422489872014DD3C006ADC90 /* RZShapeFile.m in Sources */,
 				42A008E620012B4800019CB3 /* fit_developer_field_description.cpp in Sources */,
+				422489842014DD3C006ADC90 /* safileio.c in Sources */,
 				42A0094020012B4800019CB3 /* fit_protocol_validator.cpp in Sources */,
 				42A0092220012B4800019CB3 /* fit_mesg_broadcaster.cpp in Sources */,
 				42A008C620012B4800019CB3 /* fit_buffered_mesg_broadcaster.cpp in Sources */,

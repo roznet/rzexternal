@@ -112,3 +112,7 @@ FOUNDATION_EXPORT const unsigned char RZExternalCppVersionString[];
 #import "fit_workout_step_mesg_listener.hpp"
 #import "fit_zones_target_mesg.hpp"
 #import "fit_zones_target_mesg_listener.hpp"
+
+#import "RZShapeFile.h"
+#import "RZShapeFileMapView.h"
+
