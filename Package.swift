@@ -32,7 +32,7 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("Simple-OAuth/Crypto")
                 ]
-),
+        ),
         .target(
             name: "RZExternalTestUtils",
             dependencies: [],

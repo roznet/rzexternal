@@ -126,7 +126,7 @@
     if (self.date == aDate)
         return;
     
-    self.date = aDate;
+    _date = aDate;
     
     [self setNeedsDisplay];
 }

@@ -115,7 +115,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 {
     if (self.highlightedTile != tile) {
         self.highlightedTile.highlighted = NO;
-        self.highlightedTile = tile;
+        _highlightedTile = tile;
         tile.highlighted = YES;
         [tile setNeedsDisplay];
     }
@@ -125,7 +125,7 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
 {
     if (self.selectedTile != tile) {
         self.selectedTile.selected = NO;
-        self.selectedTile = tile;
+        _selectedTile = tile;
         tile.selected = YES;
         [self.delegate didSelectDate:tile.date userAction:false];
     }
