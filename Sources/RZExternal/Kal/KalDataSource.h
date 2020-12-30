@@ -104,7 +104,7 @@
 - (BOOL)drawBackgroundInRect:(CGRect)rect forDate:(NSDate*)adate selected:(BOOL)asel;
 - (BOOL)drawForegroundInRect:(CGRect)rect forDate:(NSDate*)adate selected:(BOOL)asel;
 - (void)didSelectDate:(NSDate*)date;
-
+- (void)tableViewDidLoad:(UITableView*)tableView;
 @end
 
 @protocol KalDataSourceCallbacks <NSObject>
