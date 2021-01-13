@@ -30,6 +30,20 @@
 
 static RZShapeFile * currentFile = nil;
 
+// fast Geodesic approximation of distance between points (assuming earth is flat)
+// pass in the cosine as this will be use for many point to single one so no need to recompute cosine each time
+CLLocationDistance fastApproximateDistance(CLLocationCoordinate2D from, CLLocationCoordinate2D to, double lat_cosine){
+    CLLocationDistance abs_lat_dist = to.latitude > from.latitude ? to.latitude - from.latitude : from.latitude - to.latitude;
+    CLLocationDistance abs_lon_dist = to.longitude > from.longitude ? to.longitude - from.longitude : from.longitude - to.longitude;
+    
+    // vertical as flat -> 12430 = distance of meridian to approximate size of flat plane
+    // horizontal scaled by latitude: equator = 24901 then scaled to north pole by cosine
+    CLLocationDistance dy = 12430.0 * abs_lat_dist / 180.0;
+    CLLocationDistance dx = 24901.0 * abs_lon_dist / 360.0 * lat_cosine;
+    
+    return sqrt(dx*dx+dy*dy);
+}
+
 void RZHErrFunc(const char * message){
     if (currentFile) {
         [currentFile setLastErrorMessage:[NSString stringWithCString:message encoding:NSUTF8StringEncoding]];
@@ -95,6 +109,38 @@ void RZHErrFunc(const char * message){
         (*one).latitude = shapeObject->padfY[0];
     }
     return rv;
+}
+
+-(CLLocationDistance)closestDistanceOutside:(CLLocationCoordinate2D)coord{
+    if( self.capacity < 2){
+        return false;
+    }
+    
+    BOOL found = FALSE;
+    CLLocationDistance closest = -1;
+    unsigned long i = 0;
+    unsigned long j = 0;
+    CLLocationDegrees lat = coord.latitude;
+    CLLocationDegrees lng = coord.longitude;
+    CLLocationCoordinate2D * p = _coordinates;
+    
+    double lat_cosine = cos(coord.latitude);
+    
+    for(i = 0, j = _capacity - 1; i < _capacity; j = i++){
+        CLLocationDistance distance = fastApproximateDistance(p[i], coord, lat_cosine);
+        if( closest < 0 ){
+            closest = distance;
+        }else if( closest > distance){
+            closest = distance;
+        }
+        
+        if( ( (p[i].latitude > lat) != (p[j].latitude > lat)) &&
+           (lng < ( p[j].longitude - p[i].longitude ) * (lat-p[j].latitude)/(p[j].latitude-p[i].latitude) + p[i].longitude)){
+            found = !found;
+        }
+    }
+    
+    return found ? 0.0 : closest;
 }
 
 -(BOOL)containsPoint:(CLLocationCoordinate2D)coord{
@@ -266,6 +312,42 @@ void RZHErrFunc(const char * message){
         i++;
     }
     return rv;
+}
+
+-(NSIndexSet*)indexSetForShapeContainingOrClosest:(CLLocationCoordinate2D)coord{
+    // containing check is much faster, try that first
+    NSIndexSet * containing = [self indexSetForShapeContaining:coord];
+    if( containing.count > 0){
+        return containing;
+    }
+    
+    NSUInteger i = 0;
+    NSMutableIndexSet * rv = [NSMutableIndexSet indexSet];
+    
+    NSUInteger closest_idx = NSUIntegerMax;
+    CLLocationDistance closest_distance = -1;
+    
+    [self loadPolygons];
+    for (int i =0; i<self.polygons.count; i++) {
+        NSArray<RZShapeFilePolygons*> * polys = self.polygons[i];
+        
+        for (RZShapeFilePolygons*poly in polys) {
+            CLLocationDistance poly_distance = [poly closestDistanceOutside:coord];
+            if( closest_distance < 0 ){
+                closest_distance = poly_distance;
+                closest_idx = i;
+            }else if( poly_distance < closest_distance ){
+                closest_distance = poly_distance;
+                closest_idx = i;
+            }
+        }
+    }
+    // Add closest if nothing containing
+    if( rv.count == 0 && closest_distance > 0 ){
+        [rv addIndex:closest_idx];
+    }
+    return rv;
+
 }
 
 -(NSIndexSet*)indexSetForShapeContaining:(CLLocationCoordinate2D)coord{

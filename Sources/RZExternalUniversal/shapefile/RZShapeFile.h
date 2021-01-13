@@ -32,6 +32,7 @@ typedef BOOL(^shapeMatchingFunc)(NSDictionary*obj);
 
 +(RZShapeFile*)shapeFileWithBase:(NSString*)base;
 -(NSIndexSet*)indexSetForShapeMatching:(shapeMatchingFunc)match;
+-(NSIndexSet*)indexSetForShapeContainingOrClosest:(CLLocationCoordinate2D)coord;
 -(NSIndexSet*)indexSetForShapeContaining:(CLLocationCoordinate2D)coord;
 -(NSArray*)polygonsForIndexSet:(NSIndexSet*)idxset;
 -(NSArray<NSDictionary*>*)allShapes;
