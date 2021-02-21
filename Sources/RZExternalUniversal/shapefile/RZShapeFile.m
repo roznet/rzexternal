@@ -177,7 +177,6 @@ void RZHErrFunc(const char * message){
 @interface RZShapeFile ()
 @property (nonatomic,retain) NSString * base;
 @property (nonatomic,retain) NSArray<NSDictionary*>* values;
-@property (nonatomic,retain) NSString * lastErrorMessage;
 @property (nonatomic,retain) NSArray<NSArray<RZShapeFilePolygons*>*>*polygons;
 @end
 

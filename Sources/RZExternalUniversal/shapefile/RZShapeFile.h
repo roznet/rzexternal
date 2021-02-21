@@ -23,23 +23,26 @@
 //  SOFTWARE.
 //  
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 @import CoreLocation;
 
-typedef BOOL(^shapeMatchingFunc)(NSDictionary*obj);
+NS_ASSUME_NONNULL_BEGIN
+
+typedef BOOL(^shapeMatchingFunc)(NSDictionary<NSString*,id>*obj);
 
 @interface RZShapeFile : NSObject
+
+@property (nonatomic,strong,nullable) NSString * lastErrorMessage;
 
 +(RZShapeFile*)shapeFileWithBase:(NSString*)base;
 -(NSIndexSet*)indexSetForShapeMatching:(shapeMatchingFunc)match;
 -(NSIndexSet*)indexSetForShapeContainingOrClosest:(CLLocationCoordinate2D)coord;
 -(NSIndexSet*)indexSetForShapeContaining:(CLLocationCoordinate2D)coord;
 -(NSArray*)polygonsForIndexSet:(NSIndexSet*)idxset;
--(NSArray<NSDictionary*>*)allShapes;
+-(NSArray<NSDictionary<NSString*,id>*>*)allShapes;
 
 -(NSString*)fileBaseName;
 
--(NSString*)lastErrorMessage;
--(void)setLastErrorMessage:(NSString*)str;
-
 @end
+
+NS_ASSUME_NONNULL_END
