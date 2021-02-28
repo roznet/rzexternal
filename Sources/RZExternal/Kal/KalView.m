@@ -176,7 +176,7 @@ static const CGFloat kHeaderHeight = 35.f;
     [contentView addSubview:self.gridView];
     
     // The list of events for the selected day
-    self.tableView = [[UITableView alloc] initWithFrame:fullWidthAutomaticLayoutFrame style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:fullWidthAutomaticLayoutFrame style:UITableViewStyleGrouped];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [contentView addSubview:self.tableView];
     
