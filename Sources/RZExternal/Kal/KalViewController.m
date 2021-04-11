@@ -48,8 +48,6 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
     logic = [[KalLogic alloc] initForDate:date];
     self.initialDate = date;
     self.selectedDate = date;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(significantTimeChangeOccurred) name:UIApplicationSignificantTimeChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:KalDataSourceChangedNotification object:nil];
   }
   return self;
 }
@@ -238,6 +236,9 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(significantTimeChangeOccurred) name:UIApplicationSignificantTimeChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:KalDataSourceChangedNotification object:nil];
+
     UIEdgeInsets insets = [[UIApplication sharedApplication] keyWindow].safeAreaInsets;
     
     CGRect bar = self.navigationController.navigationBar.frame;
@@ -253,8 +254,17 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
     self.titleView.backgroundColor = [UIColor clearColor]; // should match navigationbar color
     self.tableView.backgroundColor = self.dataSource.backgroundColor;
     [self.kalView setupFrame:frame];
+    
+    [self reloadData];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    // don't listen to notification when not displayed
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationSignificantTimeChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KalDataSourceChangedNotification object:nil];
+
+    [super viewWillDisappear:animated];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -277,8 +287,9 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
     if( [self.dataSource respondsToSelector:@selector(tableViewDidLoad:)] ){
         [self.dataSource tableViewDidLoad:self.tableView];
     }
-    [self reloadData];
 }
+
+
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
