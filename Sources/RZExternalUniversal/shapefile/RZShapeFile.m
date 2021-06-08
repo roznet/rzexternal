@@ -269,9 +269,9 @@ void RZHErrFunc(const char * message){
     return [self.base lastPathComponent];
 }
 
--(MKPolygon*)mapPointsForShapeIn:(SHPObject*)shapeObject index:(int)idx part:(int)p{
-    MKPolygon * rv = nil;
-    if (shapeObject->nSHPType==SHPT_POLYGON) {
+-(MKMultiPoint*)mapPointsForShapeIn:(SHPObject*)shapeObject index:(int)idx part:(int)p{
+    MKMultiPoint * rv = nil;
+    if (shapeObject->nSHPType==SHPT_ARC || shapeObject->nSHPType==SHPT_POLYGON) {
         int from = p < shapeObject->nParts ? shapeObject->panPartStart[p] : 0;
         int to = p+1 < shapeObject->nParts ? shapeObject->panPartStart[p+1]: shapeObject->nVertices;
 
@@ -283,7 +283,11 @@ void RZHErrFunc(const char * message){
             (*one).latitude = shapeObject->padfY[i];
             one++;
         }
-        rv = [MKPolygon polygonWithCoordinates:coordinates count:(to-from)];
+        if (shapeObject->nSHPType==SHPT_POLYGON) {
+            rv = [MKPolygon polygonWithCoordinates:coordinates count:(to-from)];
+        }else{
+            rv = [MKPolyline polylineWithCoordinates:coordinates count:(to-from)];
+        }
         free(coordinates);
     }
     return rv;

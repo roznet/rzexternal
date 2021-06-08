@@ -56,7 +56,7 @@
     BOOL centerStarted = false;
 
     for (id obj in overlays) {
-        if ([obj isKindOfClass:[MKPolygon class]]) {
+        if ([obj isKindOfClass:[MKPolyline class]] || [obj isKindOfClass:[MKPolygon class]]) {
             if (boundingStarted) {
                 bounding = MKMapRectUnion(bounding, [obj boundingMapRect]);
             }else{
@@ -99,7 +99,12 @@
 }
 
 -(MKOverlayRenderer*)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
-    if ([overlay isKindOfClass:[MKPolygon class]]) {
+    if ([overlay isKindOfClass:[MKPolyline class]]) {
+        MKPolylineRenderer * rv = [[MKPolylineRenderer alloc] initWithPolyline:(MKPolyline*)overlay];
+        rv.strokeColor = [self.fillColor colorWithAlphaComponent:self.alpha];
+        rv.lineWidth = 1.0;
+        return rv;
+    }else if ([overlay isKindOfClass:[MKPolygon class]]) {
         MKPolygonRenderer * rv = [[MKPolygonRenderer alloc] initWithPolygon:(MKPolygon*)overlay];
         rv.fillColor = [self.fillColor colorWithAlphaComponent:self.alpha];
         if (self.strokeColor) {
