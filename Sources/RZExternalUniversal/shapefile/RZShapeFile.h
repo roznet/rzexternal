@@ -34,7 +34,7 @@ typedef BOOL(^shapeMatchingFunc)(NSDictionary<NSString*,id>*obj);
 
 @property (nonatomic,strong,nullable) NSString * lastErrorMessage;
 
-+(RZShapeFile*)shapeFileWithBase:(NSString*)base;
++(nullable RZShapeFile*)shapeFileWithBase:(NSString*)base;
 -(NSIndexSet*)indexSetForShapeMatching:(shapeMatchingFunc)match;
 -(NSIndexSet*)indexSetForShapeContainingOrClosest:(CLLocationCoordinate2D)coord;
 -(NSIndexSet*)indexSetForShapeContaining:(CLLocationCoordinate2D)coord;

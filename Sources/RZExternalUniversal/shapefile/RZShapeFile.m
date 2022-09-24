@@ -182,7 +182,7 @@ void RZHErrFunc(const char * message){
 
 @implementation RZShapeFile
 
-+(RZShapeFile*)shapeFileWithBase:(NSString*)base{
++(nullable RZShapeFile*)shapeFileWithBase:(NSString*)base{
     RZShapeFile * rv = [[RZShapeFile alloc] init];
     if (rv) {
         SAErrorFuncSet(&RZHErrFunc);
