@@ -40,6 +40,7 @@ typedef BOOL(^shapeMatchingFunc)(NSDictionary<NSString*,id>*obj);
 -(NSIndexSet*)indexSetForShapeContaining:(CLLocationCoordinate2D)coord;
 -(NSArray*)polygonsForIndexSet:(NSIndexSet*)idxset;
 -(NSArray<NSDictionary<NSString*,id>*>*)allShapes;
+-(NSArray<NSDictionary<NSString*,id>*>*)valuesForIndexSet:(NSIndexSet *)indexes;
 
 -(NSString*)fileBaseName;
 

@@ -411,6 +411,10 @@ void RZHErrFunc(const char * message){
     self.polygons = polys;
 }
 
+-(NSArray<NSDictionary<NSString*,id>*>*)valuesForIndexSet:(NSIndexSet *)indexes{
+    return [self.values objectsAtIndexes:indexes];
+}
+
 -(NSArray*)polygonsForIndexSet:(NSIndexSet*)idxset{
     NSString * shf = [self.base stringByAppendingPathExtension:@"shp"];
 
