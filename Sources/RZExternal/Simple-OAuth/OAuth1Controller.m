@@ -148,7 +148,6 @@ NSDictionary *CHParametersFromQueryString(NSString *queryString)
 
 @interface OAuth1Controller ()
 
-@property (nonatomic, strong) UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) NSDictionary * serviceParameters;
 @end
 
@@ -191,11 +190,6 @@ NSDictionary *CHParametersFromQueryString(NSString *queryString)
     self.webView = webWiew;
     self.webView.navigationDelegate = self;
     
-    self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.loadingIndicator.color = [UIColor grayColor];
-    [self.loadingIndicator startAnimating];
-    self.loadingIndicator.center = self.webView.center;
-    [self.webView addSubview:self.loadingIndicator];
     
     [self obtainRequestTokenWithCompletion:^(NSError *error, NSDictionary *responseParams)
      {
@@ -300,8 +294,6 @@ NSDictionary *CHParametersFromQueryString(NSString *queryString)
 #pragma mark Turn off spinner
 - (void)webViewDidFinishLoad:(WKWebView *)webView
 {
-    [self.loadingIndicator removeFromSuperview];
-    self.loadingIndicator = nil;
 }
 
 #pragma mark Used to detect call back in step 2
